@@ -32,24 +32,23 @@ export class PhotoSwipeAnimatedArrowsPlugin {
     const { lightbox, options: cfg } = this;
 
     const buildCSS = (scopeId) => {
-      const opt = this.options;
       const scope = `[data-aa="${scopeId}"]`;
       const css = `
-        ${scope} .${opt.classPrefix}-ghost {
+        ${scope} .${cfg.classPrefix}-ghost {
             position: absolute; inset: 0; z-index: 10000;
             overflow: hidden; background: transparent !important; pointer-events: none;
         }
-        ${scope} .${opt.classPrefix}-ghost-track {
+        ${scope} .${cfg.classPrefix}-ghost-track {
             position: absolute; top: 0; left: 0; height: 100%; width: 300%;
             display: flex;
-            transition: transform ${opt.animationDuration}ms ${opt.easing};
+            transition: transform ${cfg.animationDuration}ms ${cfg.easing};
             will-change: transform;
         }
-        ${scope} .${opt.classPrefix}-ghost-slide {
+        ${scope} .${cfg.classPrefix}-ghost-slide {
             flex: 0 0 33.3333%; height: 100%;
             display: flex; align-items: center; justify-content: center;
         }
-        ${scope} .${opt.classPrefix}-ghost-slide img {
+        ${scope} .${cfg.classPrefix}-ghost-slide img {
             width: 100%; height: 100%; object-fit: contain; display: block;
         }
       `;
@@ -155,14 +154,18 @@ export class PhotoSwipeAnimatedArrowsPlugin {
         track.appendChild(makeSlide(imgB));
         track.appendChild(makeSlide(imgC));
         ghost.appendChild(track);
-        root.appendChild(ghost);
 
+        // stop transition and prepare
+        track.style.transition = 'none';
+        track.style.transform = `translate3d(${startX}, 0, 0)`;
         pswp.goTo(snapTo);
-
-        track.style.transform = `translateX(${startX})`;
+        root.appendChild(ghost);
         track.getBoundingClientRect(); // force reflow
+
+        // start transition
         requestAnimationFrame(() => {
-          track.style.transform = `translateX(${endX})`;
+          track.style.transition = '';
+          track.style.transform = `translate3d(${endX}, 0, 0)`;
         });
 
         track.addEventListener('transitionend', cleanup, { once: true });
@@ -177,6 +180,7 @@ export class PhotoSwipeAnimatedArrowsPlugin {
       if (pswp.currIndex === 0 && pswp.options.loop) ghostWrap('prev');
       else pswp.mainScroll.moveIndexBy(-1, true);
       e.preventDefault();
+      e.stopPropagation();
       e.stopImmediatePropagation();
     };
 
@@ -186,6 +190,7 @@ export class PhotoSwipeAnimatedArrowsPlugin {
       if (pswp.currIndex === last && pswp.options.loop) ghostWrap('next');
       else pswp.mainScroll.moveIndexBy(1, true);
       e.preventDefault();
+      e.stopPropagation();
       e.stopImmediatePropagation();
     };
 
@@ -209,6 +214,9 @@ export class PhotoSwipeAnimatedArrowsPlugin {
       }
 
       pswp.on('destroy', () => {
+        try {
+          pswp.element.querySelectorAll(`.${cfg.classPrefix}-ghost`).forEach(el => el.remove());
+        } catch {}
         pswp.element.removeAttribute('data-aa');
         if (this._styleEl) {
           document.head.removeChild(this._styleEl);
