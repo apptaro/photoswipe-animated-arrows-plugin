@@ -1,0 +1,37 @@
+{
+  "name": "photoswipe-animated-arrows-plugin",
+  "version": "0.1.0",
+  "description": "PhotoSwipe v5 plugin that adds animated next/prev arrows with seamless looping transitions.",
+  "type": "module",
+  "main": "photoswipe-animated-arrows-plugin.esm.js",
+  "module": "photoswipe-animated-arrows-plugin.esm.js",
+  "exports": {
+    ".": "./photoswipe-animated-arrows-plugin.esm.js"
+  },
+  "files": [
+    "photoswipe-animated-arrows-plugin.esm.js",
+    "README.md",
+    "index.html"
+  ],
+  "scripts": {
+    "serve": "python3 -m http.server 8080",
+    "start": "python3 -m http.server 8080"
+  },
+  "keywords": [
+    "photoswipe",
+    "gallery",
+    "lightbox",
+    "plugin",
+    "animations"
+  ],
+  "author": "",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/apptaro/photoswipe-animated-arrows-plugin.git"
+  },
+  "bugs": {
+    "url": "https://github.com/apptaro/photoswipe-animated-arrows-plugin/issues"
+  },
+  "homepage": "https://github.com/apptaro/photoswipe-animated-arrows-plugin#readme"
+}
