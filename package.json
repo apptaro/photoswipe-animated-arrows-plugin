@@ -11,7 +11,7 @@
   "files": [
     "photoswipe-animated-arrows-plugin.esm.js",
     "README.md",
-    "index.html"
+    "sample.html"
   ],
   "scripts": {
     "serve": "python3 -m http.server 8080",

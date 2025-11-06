@@ -4,7 +4,7 @@ A tiny plugin for **PhotoSwipe v5** that replaces the default next/prev buttons
 with animated slide transitions — including seamless looping between the last and first slides.
 
 > This repository contains the ESM plugin (`photoswipe-animated-arrows-plugin.esm.js`),  
-> a minimal `index.html` demo, and `package.json` ready for GitHub distribution.
+> a minimal `sample.html` demo, and `package.json` ready for GitHub distribution.
 
 ---
 
@@ -22,9 +22,10 @@ with animated slide transitions — including seamless looping between the last 
 ```
 .
 ├── photoswipe-animated-arrows-plugin.esm.js
-├── index.html
+├── sample.html
 ├── package.json
-└── README.md
+├── README.md
+└── LICENSE
 ```
 
 ---
@@ -42,6 +43,13 @@ with animated slide transitions — including seamless looping between the last 
 
 ```html
 <link rel="stylesheet" href="https://unpkg.com/photoswipe@5/dist/photoswipe.css">
+<div id="gallery">
+  <a href="large1.jpg" data-pswp-width="1600" data-pswp-height="1067">
+    <img src="small1.jpg" alt="">
+  </a>
+  <!-- ... -->
+</div>
+
 <script type="module">
   import PhotoSwipeLightbox from 'https://unpkg.com/photoswipe@5/dist/photoswipe-lightbox.esm.js';
   import { PhotoSwipeAnimatedArrowsPlugin } from './photoswipe-animated-arrows-plugin.esm.js';
