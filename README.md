@@ -30,9 +30,9 @@ with animated slide transitions — including seamless looping between the last 
 
 ---
 
-## 🚀 Quick Start (no build)
+## 🚀 Sample Demo
 
-1. Open `index.html` using any static server  
+1. Open `sample.html` using any static server  
    (e.g. `python3 -m http.server`)
 2. Ensure internet access to load PhotoSwipe from UNPKG CDN.
 3. Click the arrows to see the animated looping transition.
@@ -52,7 +52,7 @@ with animated slide transitions — including seamless looping between the last 
 
 <script type="module">
   import PhotoSwipeLightbox from 'https://unpkg.com/photoswipe@5/dist/photoswipe-lightbox.esm.js';
-  import { PhotoSwipeAnimatedArrowsPlugin } from './photoswipe-animated-arrows-plugin.esm.js';
+  import PhotoSwipeAnimatedArrowsPlugin from './photoswipe-animated-arrows-plugin.esm.js';
 
   const lightbox = new PhotoSwipeLightbox({
     gallery: '#gallery',

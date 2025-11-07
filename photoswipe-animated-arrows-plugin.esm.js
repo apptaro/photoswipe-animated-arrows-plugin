@@ -13,7 +13,7 @@
  * Repository: https://github.com/apptaro/photoswipe-animated-arrows-plugin
  */
 
-export class PhotoSwipeAnimatedArrowsPlugin {
+export default class PhotoSwipeAnimatedArrowsPlugin {
   /**
    * @param {PhotoSwipeLightbox} lightbox - PhotoSwipe lightbox instance
    * @param {Object} [options={}] - configuration options
@@ -21,9 +21,9 @@ export class PhotoSwipeAnimatedArrowsPlugin {
   constructor(lightbox, options = {}) {
     this.lightbox = lightbox;
     this.options = {
-      animationDuration: options.animationDuration ?? 333,
-      easing: options.easing ?? 'ease',
-      classPrefix: options.classPrefix ?? 'pswp-animated',
+      animationDuration: options?.animationDuration ?? 333,
+      easing: options?.easing ?? 'ease',
+      classPrefix: options?.classPrefix ?? 'pswp-animated',
     };
     this._registerUI();
   }

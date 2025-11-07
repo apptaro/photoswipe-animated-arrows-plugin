@@ -19,12 +19,14 @@
   },
   "keywords": [
     "photoswipe",
+    "photoswipe-plugin",
     "gallery",
     "lightbox",
     "plugin",
+    "es-module",
     "animations"
   ],
-  "author": "",
+  "author": "apptaro",
   "license": "MIT",
   "repository": {
     "type": "git",
