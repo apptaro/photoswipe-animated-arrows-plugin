@@ -103,6 +103,7 @@ export default class PhotoSwipeAnimatedArrowsPlugin {
 
       let ghost, track, timeout;
       const cleanup = () => {
+        pswp.container.style.visibility = '';
         ghost?.remove();
         ghost = null;
         track?.removeEventListener('transitionend', cleanup);
@@ -114,6 +115,8 @@ export default class PhotoSwipeAnimatedArrowsPlugin {
       try {
         const i = pswp.currIndex;
         const root = pswp.element;
+
+        const padding = (pswp.options.paddingFn) ? pswp.options.paddingFn(pswp.viewportSize, pswp.getItemData(i), i) : { ...{ top: 0, right: 0, bottom: 0, left: 0 }, ...pswp.options.padding };
 
         let idxA, idxB, idxC, startX, endX, snapTo;
 
@@ -141,6 +144,10 @@ export default class PhotoSwipeAnimatedArrowsPlugin {
 
         ghost = document.createElement('div');
         ghost.className = `${cfg.classPrefix}-ghost`;
+        ghost.style.top = `${padding.top}px`;
+        ghost.style.right = `${padding.right}px`;
+        ghost.style.bottom = `${padding.bottom}px`;
+        ghost.style.left = `${padding.left}px`;
         track = document.createElement('div');
         track.className = `${cfg.classPrefix}-ghost-track`;
 
@@ -158,6 +165,7 @@ export default class PhotoSwipeAnimatedArrowsPlugin {
         // stop transition and prepare
         track.style.transition = 'none';
         track.style.transform = `translate3d(${startX}, 0, 0)`;
+        pswp.container.style.visibility = 'hidden';
         pswp.goTo(snapTo);
         root.appendChild(ghost);
         track.getBoundingClientRect(); // force reflow
